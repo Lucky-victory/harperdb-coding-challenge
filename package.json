@@ -1,0 +1,16 @@
+{
+  "name": "pm2-poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx pm2 start ecosystem.config.js",
+    "stop": "npx pm2 stop all",
+    "status": "npx pm2 status"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pm2": "^5.1.0"
+  }
+}
