@@ -6,8 +6,8 @@ const init = () => {
   .filter(module => module.isDirectory())
   .map(module => ({
     name: module.name,
-    script: `./modules/${module.name}/`,
-    instances: 2,
+    script: `./modules/${module.name}/index.js`,
+    instances: 1,
     exec_mode: 'cluster'
   }));
 

@@ -29,7 +29,6 @@ const init = async () => {
   }
 
   process.on('message', async (message) => {
-    console.log(message.data);
     try {
       const result = await sendToHDB({ operation: 'insert', schema: 'dev', table: 'test', records: [message.data] });
       console.log(result.data);

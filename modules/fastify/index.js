@@ -33,6 +33,11 @@ fastify.route({
     // the main array should have ${grid_size} rows
     // the sub arrays should each have ${grid_size} elements
     const array_of_arrays = [];
+    /*
+    const numbers = [...new Array(grid_size * grid_size)].map(() => Math.round(Math.random() * 100)).sort().reverse();
+
+    console.log(numbers);
+    */
 
     // send the message to harperdb
     sendMessageToHarperDB({ grid_size: grid_size, array_of_arrays: array_of_arrays });
@@ -44,7 +49,7 @@ fastify.route({
 
 const init = async () => {
   try {
-    await fastify.listen(3001);
+    await fastify.listen(3000);
   } catch (err) {
     console.log(err);
     process.exit(1);
