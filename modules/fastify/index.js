@@ -28,16 +28,18 @@ fastify.route({
   url: '/',
   handler: async (request) => {
     const { grid_size } = request.body;
-
-    // create an array of arrays.
-    // the main array should have ${grid_size} rows
-    // the sub arrays should each have ${grid_size} elements
     const array_of_arrays = [];
-    /*
-    const numbers = [...new Array(grid_size * grid_size)].map(() => Math.round(Math.random() * 100)).sort().reverse();
+    const total_numbers = Math.pow(grid_size, 2);
 
-    console.log(numbers);
-    */
+    const numbers = [...new Array(total_numbers)]
+    .map(() => Math.round(Math.random() * 100))
+    .sort((a, b) => a - b)
+    .reverse();
+
+    for (let i = 0; i < grid_size; i += 1) {
+      const next_subarray = numbers.splice(0, grid_size);
+      array_of_arrays.push(next_subarray);
+    }
 
     // send the message to harperdb
     sendMessageToHarperDB({ grid_size: grid_size, array_of_arrays: array_of_arrays });
@@ -49,7 +51,7 @@ fastify.route({
 
 const init = async () => {
   try {
-    await fastify.listen(3000);
+    await fastify.listen(3001);
   } catch (err) {
     console.log(err);
     process.exit(1);
